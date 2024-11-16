@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+// Threshold values
+const int TEMP_THRESHOLD = 50;  // Temperature threshold for fire in degrees Celsius
+const int SMOKE_THRESHOLD = 75; // Smoke level threshold for fire
+
+// Function to simulate temperature sensor reading
+int getTemperature() {
+    return rand() % 100;  // Generates a random temperature between 0 and 99
+}
+
+// Function to simulate smoke sensor reading
+int getSmokeLevel() {
+    return rand() % 100;  // Generates a random smoke level between 0 and 99
+}
+
+// Function to check for fire and raise an alarm
+void checkForFire(int temperature, int smokeLevel) {
+    if (temperature > TEMP_THRESHOLD && smokeLevel > SMOKE_THRESHOLD) {
+        cout << "ALARM: Fire detected! Temperature: " << temperature
+             << "°C, Smoke Level: " << smokeLevel << "%" << endl;
+    } else {
+        cout << "No fire detected. Temperature: " << temperature
+             << "°C, Smoke Level: " << smokeLevel << "%" << endl;
+    }
+}
+
+int main() {
+    srand(time(0));  // Seed for random number generation
+
+    // Simulate periodic checking
+    for (int i = 0; i < 10; i++) {
+        int temperature = getTemperature();
+        int smokeLevel = getSmokeLevel();
+
+        checkForFire(temperature, smokeLevel);
+
+        // Pause for a short while (simulate delay in real system)
+        cout << "-------------------------" << endl;
+    }
+
+    return 0;
+}
